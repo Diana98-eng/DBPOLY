@@ -1,0 +1,66 @@
+DROP DATABASE IF EXISTS BDPROYECTO;
+CREATE DATABASE BDPROYECTO;
+USE BDPROYECTO;
+Create table tipo_de_documento (
+Idtipodoc varchar(20) primary key , 
+Nomdoc varchar (20)
+);
+
+Create table usuario(
+Numdoc int (10) primary key not null auto_increment,
+Nomusu varchar (20) not null,
+Apeusu varchar (20) not null,
+Correo varchar(20) not null,
+Celular bigint(19) not null,
+idtipodoc varchar (20) 
+);
+
+create table factura (
+Numfact int primary key auto_increment,
+Fecha date not null,
+Valortotal  decimal (19,0),
+Idpago tinyint,
+numdoc int,
+Descuentos decimal (19,0) not null
+);
+
+
+create table método_de_pago (
+Idpago tinyint primary key auto_increment,
+Nombre varchar (30)
+);
+
+Create table factura_producto (
+NumFact integer (10),
+IdProd integer,
+Valor decimal (19,0),
+Cantidad integer (10)
+);
+
+Create table Producto (
+IdProd integer, 
+NomProd varchar (255),
+Valor decimal (19,0),
+Idcat integer
+);
+
+create table categoria (
+Idcat integer primary key auto_increment,
+nomprod varchar (20),
+cantidad integer);
+
+alter table factura_producto 
+add primary key (NumFact,IdProd); 
+
+alter table usuario
+add foreign key (Idtipodoc) references tipo_de_documento(Idtipodoc);
+
+alter table factura 
+add foreign key (Idpago) references método_de_pago (Idpago);
+
+alter table factura 
+add foreign key (numdoc) references usuario (numdoc);
+
+alter table producto 
+add foreign key (Idcat) references categoria (Idcat);
+
