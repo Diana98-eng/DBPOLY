@@ -2,17 +2,17 @@ DROP DATABASE IF EXISTS BDPROYECTO;
 CREATE DATABASE BDPROYECTO;
 USE BDPROYECTO;
 Create table tipo_de_documento (
-Idtipodoc varchar(20) primary key , 
+Idtipodoc tinyint primary key auto_increment, 
 Nomdoc varchar (20)
 );
 
 Create table usuario(
-Numdoc int (10) primary key not null auto_increment,
+Numdoc int (10) primary key not null,
 Nomusu varchar (20) not null,
 Apeusu varchar (20) not null,
 Correo varchar(20) not null,
 Celular bigint(19) not null,
-idtipodoc varchar (20) 
+idtipodoc tinyint 
 );
 
 create table factura (
@@ -38,14 +38,14 @@ Cantidad integer (10)
 );
 
 Create table Producto (
-IdProd integer, 
+IdProd integer primary key auto_increment, 
 NomProd varchar (255),
 Valor decimal (19,0),
 Idcat integer
 );
 
 create table categoria (
-Idcat integer primary key auto_increment,
+Idcat integer primary key,
 nomprod varchar (20),
 cantidad integer);
 
